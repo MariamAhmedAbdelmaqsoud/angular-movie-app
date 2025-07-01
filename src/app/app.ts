@@ -1,11 +1,14 @@
 import { Component } from '@angular/core';
-import { Home } from './pages/home/home';
+import { RouterOutlet } from '@angular/router';
+import { Navbar } from './shared/components/navbar/navbar';
+
 @Component({
   selector: 'app-root',
-  imports: [Home],
+  imports: [RouterOutlet, Navbar],
   templateUrl: './app.html',
   styleUrl: './app.scss',
 })
 export class App {
   protected title = 'movie-app';
+
 }

@@ -1,1 +1,20 @@
-
+<app-hero />
+<p-carousel
+  [value]="movies()"
+  [numVisible]="5"
+  [circular]="true"
+  [autoplayInterval]="6000"
+  [responsiveOptions]="responsiveOptions"
+>
+  <ng-template let-movie pTemplate="item">
+    <a [routerLink]="['/movie', movie.id]" class="movie-card-link">
+      <div class="movie-card">
+        <img
+          [src]="'https://image.tmdb.org/t/p/w500' + movie.poster_path"
+          alt="{{ movie.title }}"
+        />
+        <h4>{{ movie.title }}</h4>
+      </div>
+    </a>
+  </ng-template>
+</p-carousel>

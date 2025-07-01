@@ -1,0 +1,83 @@
+:host {
+  display: block;
+
+  .hero {
+    height: 88vh;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    color: white;
+    display: flex;
+    align-items: flex-end;
+    padding: 2rem;
+
+    .overlay {
+      max-width: 600px;
+      margin-bottom: 50px;
+
+      h1 {
+        font-size: 2.5rem;
+        font-weight: bold;
+      }
+
+      p {
+        font-size: 1.1rem;
+        margin: 1rem 0;
+        color: #ccc;
+      }
+
+      .buttons {
+        display: flex;
+        gap: 1rem;
+        flex-wrap: wrap;
+
+        .watch-btn,
+        .more-btn {
+          padding: 0.6rem 1.2rem;
+          font-size: 1rem;
+          border: none;
+          border-radius: 4px;
+          cursor: pointer;
+        }
+
+        .watch-btn {
+          background-color: #00bcd4;
+          color: black;
+        }
+
+        .more-btn {
+          background-color: #333;
+          color: white;
+          text-decoration: none;
+        }
+      }
+    }
+  }
+}
+@media (max-width: 768px) {
+  .hero {
+    height: auto;
+    padding: 1rem;
+
+    .overlay {
+      h1 {
+        font-size: 1.8rem;
+      }
+
+      p {
+        display: none;
+      }
+
+      .buttons {
+        flex-direction: column;
+        align-items: center;
+
+        .watch-btn,
+        .more-btn {
+          width: 60%;
+          font-size: 1rem;
+        }
+      }
+    }
+  }
+}

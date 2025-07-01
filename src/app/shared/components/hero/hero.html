@@ -1,0 +1,19 @@
+
+    <div *ngIf="featuredMovie() as movie"
+      class="hero"
+      [ngStyle]="{
+        'background-image':
+          'url(https://image.tmdb.org/t/p/original' + movie.backdrop_path + ')'
+      }"
+    >
+      <div class="overlay">
+        <h1>{{ movie.title }}</h1>
+        <p>{{ movie.overview | slice: 0:150 }}...</p>
+        <div class="buttons">
+          <button class="watch-btn">▶ Watch Now</button>
+          <a [routerLink]="['/movie', movie.id]" class="more-btn">ℹ More Info</a>
+        </div>
+      </div>
+    </div>
+
+  

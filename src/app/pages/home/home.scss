@@ -1,0 +1,39 @@
+:host {
+  display: block;
+  background-color: #0f0f0f;
+  color: white;
+  padding: 1rem;
+}
+
+.movie-card-link {
+  text-decoration: none;
+  color: inherit;
+
+  .movie-card {
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border-radius: 12px;
+    overflow: hidden;
+    background-color: #1a1a1a;
+
+    &:hover {
+      transform: scale(0.9);
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+    }
+
+    img {
+      width: 100%;
+      height: auto;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
+    }
+
+    h4 {
+      margin-top: 0.5rem;
+      font-size: 1rem;
+    }
+  }
+}
+::ng-deep .p-carousel-items-content {
+  transition: transform 1.2s ease-in-out;
+}

@@ -1,1 +1,76 @@
-<p>movie-details works!</p>
+@if (movie()) {
+<div class="details-page">
+  <div class="movie-info">
+    <div class="poster">
+      <img
+        [src]="'https://image.tmdb.org/t/p/w500' + movie().poster_path"
+        alt="{{ movie().title }}"
+      />
+    </div>
+    <div class="info">
+      <div class="header">
+        <h1>{{ movie().title }}</h1>
+        <span class="release">{{ movie().release_date | date }}</span>
+      </div>
+
+      <div class="rating-section">
+        <p-rating
+          [readonly]="true"
+          [ngModel]="movie().vote_average / 2"
+        ></p-rating>
+        <span class="votes">{{ movie().vote_count }} votes</span>
+      </div>
+
+      <p class="overview">{{ movie().overview }}</p>
+
+      <div class="genres">
+        @for (genre of movie().genres; track genre.id) {
+        <p-tag severity="info" [value]="genre.name" class="genre-tag" />
+        }
+      </div>
+
+      <div class="meta">
+        <p><strong>Duration:</strong> {{ movie().runtime }} Min</p>
+        <p>
+          <strong>Language:</strong> {{ movie().original_language | uppercase }}
+        </p>
+      </div>
+
+      <div class="production">
+        @if (movie().production_companies?.length) {
+        <img
+          *ngFor="let company of movie().production_companies"
+          [src]="'https://image.tmdb.org/t/p/w200' + company.logo_path"
+          [alt]="company.name"
+          class="company-logo"
+        />
+        }
+      </div>
+    </div>
+  </div>
+
+  <!-- Recommendations -->
+  @if (recommendations().length) {
+  <div class="recommendations">
+    <h2>Recommendations</h2>
+    <p-carousel
+      [value]="recommendations()"
+      [numVisible]="6"
+      [circular]="true"
+      [autoplayInterval]="4000"
+    >
+      <ng-template let-movie pTemplate="item">
+        <a [routerLink]="['/movie', movie.id]" class="rec-card">
+          <img
+            [src]="'https://image.tmdb.org/t/p/w500' + movie.poster_path"
+            alt="{{ movie.title }}"
+          />
+          <h5>{{ movie.title }}</h5>
+          <p>{{ movie.release_date | date }}</p>
+        </a>
+      </ng-template>
+    </p-carousel>
+  </div>
+  }
+</div>
+}

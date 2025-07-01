@@ -1,0 +1,27 @@
+@if (results().length > 0) {
+  <div class="results-grid">
+    @for (item of results(); track item.id) {
+      <a
+        class="result-card"
+        [routerLink]="[item.media_type === 'tv' ? '/tv' : '/movie', item.id]"
+      >
+        <img
+          [src]="'https://image.tmdb.org/t/p/w500' + item.poster_path"
+          [alt]="item.title || item.name"
+        />
+        <div class="overlay">
+          <h4>{{ item.title || item.name }}</h4>
+        </div>
+      </a>
+    }
+  </div>
+} @else {
+  <div class="no-results">
+    <i class="fas fa-search fa-4x"></i>
+    <h2>No results found</h2>
+    <p>Try searching for something else.</p>
+  </div>
+}
+
+
+  
