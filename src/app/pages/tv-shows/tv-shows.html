@@ -1,3 +1,4 @@
+
 <div class="tv-container">
     <h2 class="section-title">Popular TV Shows</h2>
     <div class="tv-grid">
@@ -7,6 +8,7 @@
             [src]="'https://image.tmdb.org/t/p/w500' + tv.poster_path"
             alt="{{ tv.name }}"
           />
+          <app-wishlist-icon [item]="tv"></app-wishlist-icon>
           <div class="card-overlay">
             <h3>{{ tv.name }}</h3>
             <p>{{ tv.first_air_date?.slice(0, 4) }}</p>

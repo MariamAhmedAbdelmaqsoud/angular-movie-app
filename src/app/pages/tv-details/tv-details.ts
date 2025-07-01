@@ -8,7 +8,7 @@ import { TagModule } from 'primeng/tag';
 import { CarouselModule } from 'primeng/carousel';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
-
+import { WishlistIcon } from '../../shared/components/wishlist-icon/wishlist-icon';
 @Component({
   selector: 'app-tv-details',
   imports: [
@@ -19,6 +19,7 @@ import { FormsModule } from '@angular/forms';
     CarouselModule,
     RouterModule,
     FormsModule,
+    WishlistIcon
   ],
   templateUrl: './tv-details.html',
   styleUrl: './tv-details.scss',
@@ -35,14 +36,16 @@ export class TvDetails implements OnInit {
     { breakpoint: '480px', numVisible: 1, numScroll: 1 },
   ];
   ngOnInit(): void {
-    const id = this.route.snapshot.paramMap.get('id');
-    if (id) {
-      this.movieService
-        .getTvShowDetails(id)
-        .subscribe((res) => this.tv.set(res));
-      this.movieService
-        .getTvRecommendations(id)
-        .subscribe((res: any) => this.recommendations.set(res.results));
-    }
+    this.route.paramMap.subscribe((params) => {
+      const id = params.get('id');
+      if (id) {
+        this.movieService
+          .getMovieDetails(id)
+          .subscribe((res) => this.tv.set(res));
+        this.movieService.getRecommendations(id).subscribe((res: any) => {
+          this.recommendations.set(res.results);
+        });
+      }
+    });
   }
 }

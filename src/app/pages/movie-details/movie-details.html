@@ -8,6 +8,7 @@
       />
     </div>
     <div class="info">
+      <app-wishlist-icon [item]="movie"></app-wishlist-icon>
       <div class="header">
         <h1>{{ movie().title }}</h1>
         <span class="release">{{ movie().release_date | date }}</span>
@@ -54,10 +55,12 @@
   <div class="recommendations">
     <h2>Recommendations</h2>
     <p-carousel
-      [value]="recommendations()"
-      [numVisible]="6"
-      [circular]="true"
-      [autoplayInterval]="4000"
+    [value]="recommendations()"
+    [numVisible]="5"
+    [circular]="true"
+    [autoplayInterval]="6000"
+    [numScroll]="1"
+    [responsiveOptions]="responsiveOptions"
     >
       <ng-template let-movie pTemplate="item">
         <a [routerLink]="['/movie', movie.id]" class="rec-card">

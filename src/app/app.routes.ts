@@ -31,4 +31,11 @@ export const routes: Routes = [
         (m) => m.SearchResults
       ),
   },
+  {
+    path: 'wishlist',
+    loadComponent: () =>
+      import('./pages/wishlist/wishlist').then(
+        (m) => m.WishlistPage
+      ),
+  },
 ];

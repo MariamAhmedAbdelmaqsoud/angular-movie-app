@@ -8,6 +8,7 @@ import { RatingModule } from 'primeng/rating';
 import { FormsModule } from '@angular/forms';
 import { TagModule } from 'primeng/tag';
 import { CarouselModule } from 'primeng/carousel';
+import { WishlistIcon } from '../../shared/components/wishlist-icon/wishlist-icon';
 @Component({
   selector: 'app-movie-details',
   imports: [
@@ -18,47 +19,33 @@ import { CarouselModule } from 'primeng/carousel';
     FormsModule,
     TagModule,
     CarouselModule,
+    WishlistIcon
   ],
   templateUrl: './movie-details.html',
   styleUrl: './movie-details.scss',
 })
 export class MovieDetails {
-  responsiveOptions = [
-    {
-      breakpoint: '1199px',
-      numVisible: 4,
-      numScroll: 1,
-    },
-    {
-      breakpoint: '991px',
-      numVisible: 3,
-      numScroll: 1,
-    },
-    {
-      breakpoint: '767px',
-      numVisible: 2,
-      numScroll: 1,
-    },
-    {
-      breakpoint: '480px',
-      numVisible: 1,
-      numScroll: 1,
-    },
-  ];
   private route = inject(ActivatedRoute);
   private movieService = inject(Movie);
   movie = signal<any>(null);
   recommendations = signal<any[]>([]);
+  responsiveOptions = [
+    { breakpoint: '1199px', numVisible: 4, numScroll: 1 },
+    { breakpoint: '991px', numVisible: 3, numScroll: 1 },
+    { breakpoint: '767px', numVisible: 2, numScroll: 1 },
+    { breakpoint: '480px', numVisible: 1, numScroll: 1 },
+  ];
   ngOnInit(): void {
-    const id = this.route.snapshot.paramMap.get('id');
-    if (id) {
-      this.movieService
-        .getMovieDetails(id)
-        .subscribe((res) => this.movie.set(res));
-      this.movieService.getRecommendations(id).subscribe((res: any) => {
-        console.log(res);
-        this.recommendations.set(res.results);
-      });
-    }
+    this.route.paramMap.subscribe((params) => {
+      const id = params.get('id');
+      if (id) {
+        this.movieService
+          .getMovieDetails(id)
+          .subscribe((res) => this.movie.set(res));
+        this.movieService.getRecommendations(id).subscribe((res: any) => {
+          this.recommendations.set(res.results);
+        });
+      }
+    });
   }
 }

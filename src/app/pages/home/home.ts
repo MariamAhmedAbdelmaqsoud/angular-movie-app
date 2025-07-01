@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, inject } from '@angular/core';
 import { Movie } from '../../core/services/movie';
 import { Inject } from '@angular/core';
 import { Subscription } from 'rxjs';
@@ -6,15 +6,18 @@ import { signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CarouselModule } from 'primeng/carousel';
 import { RouterModule } from '@angular/router';
-import { Hero} from '../../shared/components/hero/hero';
+import { Hero } from '../../shared/components/hero/hero';
+import { Wishlist } from '../../core/services/wishlist';
+import { WishlistIcon } from '../../shared/components/wishlist-icon/wishlist-icon';
 @Component({
   selector: 'app-home',
-  imports: [CommonModule, CarouselModule, RouterModule,Hero],
+  imports: [CommonModule, CarouselModule, RouterModule, Hero, WishlistIcon],
   templateUrl: './home.html',
   styleUrl: './home.scss',
 })
 export class Home implements OnInit, OnDestroy {
   //   private movieService = Inject(Movie);
+  wishlistService = inject(Wishlist);
   movies = signal<any[]>([]);
   subscription!: Subscription;
   // responsiveOptions
@@ -41,6 +44,12 @@ export class Home implements OnInit, OnDestroy {
       console.log(res.results);
       this.movies.set(res.results);
     });
+  }
+  isInWishlist(item: any) {
+    return this.wishlistService.isInWishlist(item.id);
+  }
+  toggleWishlist(item: any) {
+    this.wishlistService.toggle(item);
   }
   ngOnDestroy(): void {
     this.subscription?.unsubscribe();

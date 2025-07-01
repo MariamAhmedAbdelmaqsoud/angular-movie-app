@@ -1,0 +1,28 @@
+@if (items().length > 0) {
+    <div class="tv-grid">
+      @for ( item of items(); track item.id) {
+        <a
+          class="tv-card"
+          [routerLink]="[item.media_type === 'tv' ? '/tv' : '/movie', item.id]"
+        >
+          <img
+            [src]="'https://image.tmdb.org/t/p/w500' + item.poster_path"
+            [alt]="item.title || item.name"
+          />
+          <div class="card-overlay">
+            <h3>{{ item.title || item.name }}</h3>
+            <button (click)="remove(item.id); $event.stopPropagation(); $event.preventDefault()">
+              <i class="fas fa-trash"></i>
+            </button>
+          </div>
+        </a>
+      }
+    </div>
+  } @else {
+    <div class="no-results">
+      <i class="fas fa-heart fa-4x"></i>
+      <h2>Your wishlist is empty</h2>
+      <p>Add movies or shows to your wishlist to see them here.</p>
+    </div>
+  }
+  

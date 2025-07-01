@@ -1,52 +1,58 @@
-<div *ngIf="tv() as show" class="tv-details-container">
-  <div class="tv-header">
-    <img
-      class="tv-poster"
-      [src]="'https://image.tmdb.org/t/p/w500' + show.poster_path"
-      alt="{{ show.name }}"
-    />
-    <div class="tv-info">
-      <h1>{{ show.name }}</h1>
-      <p class="tagline">{{ show.tagline }}</p>
-      <p class="overview">{{ show.overview }}</p>
+@if (tv()) {
+  <div class="tv-details-container">
+    <div class="tv-header">
+      <img
+        class="tv-poster"
+        [src]="'https://image.tmdb.org/t/p/w500' + tv().poster_path"
+        [alt]="tv().name"
+      />
+      <div class="tv-info">
+        <app-wishlist-icon [item]="tv()"></app-wishlist-icon>
+        <h1>{{ tv().name }}</h1>
+        <p class="tagline">{{ tv().tagline }}</p>
+        <p class="overview">{{ tv().overview }}</p>
 
-      <div class="genres">
-        <p-tag
-          *ngFor="let genre of show.genres"
-          [value]="genre.name"
-          styleClass="genre-tag"
-        ></p-tag>
+        <div class="genres">
+          @for (genre of tv().genres; track genre.id) {
+            <p-tag
+              [value]="genre.name"
+              styleClass="genre-tag"
+            ></p-tag>
+          }
+        </div>
+
+        <p-rating
+          [ngModel]="tv().vote_average / 2"
+          [readonly]="true"
+          [stars]="5"
+        ></p-rating>
+        <p class="release-date">First Air Date: {{ tv().first_air_date }}</p>
       </div>
-
-      <p-rating
-        [ngModel]="show.vote_average / 2"
-        readonly
-        stars="5"
-      ></p-rating>
-      <p class="release-date">First Air Date: {{ show.first_air_date }}</p>
     </div>
-  </div>
 
-  <!-- Recommendations -->
-  <div *ngIf="recommendations()?.length" class="recommendations-section">
-    <h2>Recommended TV Shows</h2>
-    <p-carousel
-      [value]="recommendations()"
-      [numVisible]="5"
-      [circular]="true"
-      [autoplayInterval]="6000"
-      [numScroll]="1"
-      [responsiveOptions]="responsiveOptions"
-    >
-      <ng-template let-show pTemplate="item">
-        <a [routerLink]="['/tv', show.id]" class="recommendation-card">
-          <img
-            [src]="'https://image.tmdb.org/t/p/w500' + show.poster_path"
-            alt="{{ show.name }}"
-          />
-          <h4>{{ show.name }}</h4>
-        </a>
-      </ng-template>
-    </p-carousel>
+    @if (recommendations()?.length) {
+      <div class="recommendations-section">
+        <h2>Recommended TV Shows</h2>
+        <p-carousel
+          [value]="recommendations()"
+          [numVisible]="5"
+          [circular]="true"
+          [autoplayInterval]="6000"
+          [numScroll]="1"
+          [responsiveOptions]="responsiveOptions"
+        >
+          <ng-template let-show pTemplate="item">
+            <a [routerLink]="['/tv', show.id]" class="recommendation-card">
+              <img
+                [src]="'https://image.tmdb.org/t/p/w500' + show.poster_path"
+                [alt]="show.name"
+              />
+              <h4>{{ show.name}}</h4>
+            </a>
+          </ng-template>
+        </p-carousel>
+      </div>
+    }
   </div>
-</div>
+}
+

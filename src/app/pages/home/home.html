@@ -13,6 +13,7 @@
           [src]="'https://image.tmdb.org/t/p/w500' + movie.poster_path"
           alt="{{ movie.title }}"
         />
+        <app-wishlist-icon [item]="movie"></app-wishlist-icon>
         <h4>{{ movie.title }}</h4>
       </div>
     </a>

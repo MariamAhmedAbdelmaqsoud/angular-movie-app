@@ -10,11 +10,13 @@
   color: inherit;
 
   .movie-card {
+    position: relative;
     cursor: pointer;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     border-radius: 12px;
     overflow: hidden;
     background-color: #1a1a1a;
+    position: relative;
 
     &:hover {
       transform: scale(0.9);
@@ -37,3 +39,4 @@
 ::ng-deep .p-carousel-items-content {
   transition: transform 1.2s ease-in-out;
 }
+

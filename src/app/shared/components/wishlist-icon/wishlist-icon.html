@@ -1,0 +1,8 @@
+<i
+class="fa-heart wishlist-icon"
+[ngClass]="{
+  'fas active': isInWishlist(item),
+  'far': !isInWishlist(item)
+}"
+(click)="toggle(); $event.preventDefault(); $event.stopPropagation()"
+></i>
