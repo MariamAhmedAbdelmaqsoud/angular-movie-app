@@ -11,11 +11,15 @@ export class WishlistIcon {
   @Input() item: any;
   wishlistService = inject(Wishlist);
 
-  isInWishlist(item: any) {
-    return this.wishlistService.isInWishlist(item.id);
+  isInWishlist(): boolean {
+    return (
+      this.item?.id != null && this.wishlistService.isInWishlist(this.item.id)
+    );
   }
 
   toggle() {
-    this.wishlistService.toggle(this.item);
+    if (this.item?.id != null) {
+      this.wishlistService.toggle(this.item);
+    }
   }
 }

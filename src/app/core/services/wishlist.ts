@@ -25,6 +25,7 @@ export class Wishlist {
   }
 
   addToWishlist(item: any) {
+    if (!item || item.id == null) return;
     const current = this.wishlist();
     if (!current.find((i) => i.id === item.id)) {
       this.wishlist.set([...current, item]);
@@ -32,15 +33,18 @@ export class Wishlist {
   }
 
   removeFromWishlist(id: number) {
+    if (id == null) return;
     const current = this.wishlist();
-    this.wishlist.set(current.filter((item) => item.id !== id));
+    this.wishlist.set(current.filter((item) => item && item.id !== id));
   }
 
   isInWishlist(id: number): boolean {
-    return this.wishlist().some((item) => item.id === id);
+    if (id == null) return false;
+    return this.wishlist().some((item) => item != null && item.id === id);
   }
 
   toggle(item: any) {
+    if (!item || item.id == null) return;
     if (this.isInWishlist(item.id)) {
       this.removeFromWishlist(item.id);
     } else {

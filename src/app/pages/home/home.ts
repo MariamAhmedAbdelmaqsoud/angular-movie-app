@@ -46,10 +46,11 @@ export class Home implements OnInit, OnDestroy {
     });
   }
   isInWishlist(item: any) {
-    return this.wishlistService.isInWishlist(item.id);
+    return !!item?.id && this.wishlistService.isInWishlist(item.id);
   }
+
   toggleWishlist(item: any) {
-    this.wishlistService.toggle(item);
+    if (item?.id != null) this.wishlistService.toggle(item);
   }
   ngOnDestroy(): void {
     this.subscription?.unsubscribe();

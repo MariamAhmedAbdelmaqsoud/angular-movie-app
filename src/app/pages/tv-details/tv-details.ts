@@ -19,7 +19,7 @@ import { WishlistIcon } from '../../shared/components/wishlist-icon/wishlist-ico
     CarouselModule,
     RouterModule,
     FormsModule,
-    WishlistIcon
+    WishlistIcon,
   ],
   templateUrl: './tv-details.html',
   styleUrl: './tv-details.scss',
@@ -40,9 +40,10 @@ export class TvDetails implements OnInit {
       const id = params.get('id');
       if (id) {
         this.movieService
-          .getMovieDetails(id)
+          .getTvShowDetails(id)
           .subscribe((res) => this.tv.set(res));
-        this.movieService.getRecommendations(id).subscribe((res: any) => {
+
+        this.movieService.getTvRecommendations(id).subscribe((res: any) => {
           this.recommendations.set(res.results);
         });
       }

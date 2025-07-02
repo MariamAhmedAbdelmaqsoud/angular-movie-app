@@ -13,7 +13,7 @@ export class Hero implements OnInit {
   featuredMovie = signal<any>(null);
   ngOnInit(): void {
     this.movieService.getMovies().subscribe((res:any) => {
-      this.featuredMovie.set(res.results[9]);
+      this.featuredMovie.set(res.results[0]);
     })
   }
 }
