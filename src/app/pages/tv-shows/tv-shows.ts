@@ -4,10 +4,11 @@ import { Movie } from '../../core/services/movie';
 import { CardModule } from 'primeng/card';
 import { RatingModule } from 'primeng/rating';
 import { RouterModule } from '@angular/router';
-import{WishlistIcon} from '../../shared/components/wishlist-icon/wishlist-icon';
+import { WishlistIcon } from '../../shared/components/wishlist-icon/wishlist-icon';
+import { TranslateModule } from '@ngx-translate/core';
 @Component({
   selector: 'app-tv-shows',
-  imports: [CommonModule, CardModule, RatingModule, RouterModule, WishlistIcon],
+  imports: [CommonModule, CardModule, RatingModule, RouterModule, WishlistIcon, TranslateModule],
   templateUrl: './tv-shows.html',
   styleUrl: './tv-shows.scss',
 })

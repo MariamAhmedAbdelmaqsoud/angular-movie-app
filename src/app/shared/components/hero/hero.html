@@ -10,8 +10,8 @@
         <h1>{{ movie.title }}</h1>
         <p>{{ movie.overview | slice: 0:150 }}...</p>
         <div class="buttons">
-          <button class="watch-btn">▶ Watch Now</button>
-          <a [routerLink]="['/movie', movie.id]" class="more-btn">ℹ More Info</a>
+          <button class="watch-btn">{{ 'WATCH_NOW' | translate }}</button>
+          <a [routerLink]="['/movie', movie.id]" class="more-btn">{{ 'MORE_INFO' | translate }}</a>
         </div>
       </div>
     </div>

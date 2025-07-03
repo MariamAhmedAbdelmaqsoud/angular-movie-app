@@ -8,7 +8,7 @@
       />
     </div>
     <div class="info">
-      <app-wishlist-icon [item]="movie"></app-wishlist-icon>
+      <app-wishlist-icon [item]="movie()"></app-wishlist-icon>
       <div class="header">
         <h1>{{ movie().title }}</h1>
         <span class="release">{{ movie().release_date | date }}</span>

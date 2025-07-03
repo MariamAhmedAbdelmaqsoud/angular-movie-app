@@ -1,9 +1,10 @@
 import { Component ,inject} from '@angular/core';
 import { Wishlist } from '../../core/services/wishlist';
 import { RouterModule } from '@angular/router';
+import { TranslateModule } from '@ngx-translate/core';
 @Component({
   selector: 'app-wishlist',
-  imports: [RouterModule],
+  imports: [RouterModule, TranslateModule],
   templateUrl: './wishlist.html',
   styleUrl: './wishlist.scss',
 })

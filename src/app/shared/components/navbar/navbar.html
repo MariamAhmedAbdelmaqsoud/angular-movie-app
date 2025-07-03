@@ -2,9 +2,11 @@
   <div class="nav-left">
     <span class="logo">CouchPotato</span>
     <div class="nav-links">
-      <a routerLink="/" class="nav-link">Home</a>
-      <a routerLink="/tv" class="nav-link">TV Shows</a>
-      <a routerLink="/wishlist" class="nav-link">Wishlist</a>
+      <a routerLink="/" class="nav-link">{{ 'HOME' | translate }}</a>
+      <a routerLink="/tv" class="nav-link">{{ 'TV_SHOWS' | translate }}</a>
+      <a routerLink="/wishlist" class="nav-link"
+        >{{ 'WISHLIST' | translate }}</a
+      >
     </div>
   </div>
 
@@ -14,22 +16,24 @@
         type="text"
         pInputText
         [(ngModel)]="searchQuery"
-        placeholder="Search..."
+        placeholder="{{ 'SEARCH_PLACEHOLDER' | translate }}"
         class="search-bar"
       />
-      <i
-        class="fas fa-search search-icon"
-        (click)="goToSearch()"
-      ></i>
+      <i class="fas fa-search search-icon" (click)="goToSearch()"></i>
     </div>
-    <a routerLink="/login" class="nav-btn">Login</a>
-    <a routerLink="/signup" class="nav-btn">Sign Up</a>
 
-    <!-- Hamburger icon for small screens -->
+    <select
+      [(ngModel)]="language"
+      (change)="onLanguageChange()"
+      class="language-select"
+    >
+      <option value="en">EN</option>
+      <option value="ar">AR</option>
+    </select>
+
     <button class="menu-icon" (click)="toggleMenu()">☰</button>
   </div>
 
-  <!-- Mobile menu -->
   @if (menuOpen) {
   <div class="mobile-menu">
     <input
@@ -39,11 +43,20 @@
       placeholder="Search..."
       class="search-bar"
     />
-    <a routerLink="/" (click)="toggleMenu()">Home</a>
-    <a routerLink="/tv" (click)="toggleMenu()">TV Shows</a>
-    <a routerLink="/wishlist" (click)="toggleMenu()">Wishlist</a>
-    <a routerLink="/login" (click)="toggleMenu()">Login</a>
-    <a routerLink="/signup" (click)="toggleMenu()">Sign Up</a>
+    <a routerLink="/" (click)="toggleMenu()">{{ 'HOME' | translate }}</a>
+    <a routerLink="/tv" (click)="toggleMenu()">{{ 'TV_SHOWS' | translate }}</a>
+    <a routerLink="/wishlist" (click)="toggleMenu()"
+      >{{ 'WISHLIST' | translate }}</a
+    >
+
+    <select
+      [(ngModel)]="language"
+      (change)="onLanguageChange()"
+      class="language-select"
+    >
+      <option value="en">EN</option>
+      <option value="ar">AR</option>
+    </select>
   </div>
   }
 </nav>

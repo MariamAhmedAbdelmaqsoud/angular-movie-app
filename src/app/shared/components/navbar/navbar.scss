@@ -73,14 +73,13 @@
       }
     }
 
-    .nav-btn {
-      color: #00bcd4;
-      text-decoration: none;
+    .language-select {
+      background-color: #1a1a1a;
+      color: white;
+      border: 1px solid #00bcd4;
+      border-radius: 5px;
+      padding: 0.3rem 0.6rem;
       font-weight: bold;
-
-      &:hover {
-        text-decoration: underline;
-      }
     }
 
     .menu-icon {
@@ -128,6 +127,15 @@
         color: #ccc;
       }
     }
+
+    .language-select {
+      background-color: #1a1a1a;
+      color: white;
+      border: 1px solid #00bcd4;
+      border-radius: 5px;
+      padding: 0.3rem 0.6rem;
+      font-weight: bold;
+    }
   }
 
   @media (max-width: 768px) {
@@ -135,25 +143,18 @@
       display: none !important;
     }
 
-    .search-bar {
-      display: none !important;
-    }
-    .search-icon {
+    .search-wrapper {
       display: none !important;
     }
 
-    .nav-btn {
-      display: none !important;
-    }
     .menu-icon {
       display: block !important;
-      background: none;
-      border: none;
       font-size: 2rem;
       color: #fff;
       cursor: pointer;
       z-index: 200;
     }
+
     .mobile-menu {
       display: flex !important;
     }

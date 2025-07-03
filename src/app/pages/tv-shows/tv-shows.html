@@ -1,6 +1,6 @@
 
 <div class="tv-container">
-    <h2 class="section-title">Popular TV Shows</h2>
+    <h2 class="section-title">{{ 'POPULAR_TV_SHOWS' | translate }}</h2>
     <div class="tv-grid">
       @for (tv of tvShows(); track tv.id) {
         <a [routerLink]="['/tv', tv.id]" class="tv-card">
