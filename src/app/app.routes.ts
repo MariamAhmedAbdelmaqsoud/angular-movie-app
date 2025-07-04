@@ -10,6 +10,10 @@ export const routes: Routes = [
     pathMatch: 'full',
   },
   {
+    path: 'movies',
+    loadComponent: () => import('./pages/movies/movies').then((m) => m.Movies),
+  },
+  {
     path: 'movie/:id',
     loadComponent: () =>
       import('./pages/movie-details/movie-details').then((m) => m.MovieDetails),
@@ -34,8 +38,6 @@ export const routes: Routes = [
   {
     path: 'wishlist',
     loadComponent: () =>
-      import('./pages/wishlist/wishlist').then(
-        (m) => m.WishlistPage
-      ),
+      import('./pages/wishlist/wishlist').then((m) => m.WishlistPage),
   },
 ];

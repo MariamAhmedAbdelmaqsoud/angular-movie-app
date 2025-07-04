@@ -1,5 +1,7 @@
 {
   "HOME": "Home",
+  "MOVIES": "Movies",
+  "POPULAR_MOVIES": "Popular Movies",
   "TV_SHOWS": "TV Shows",
   "WISHLIST": "Watchlist",
   "SEARCH_PLACEHOLDER": "Search...",

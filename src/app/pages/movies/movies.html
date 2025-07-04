@@ -1,0 +1,19 @@
+<div class="tv-container">
+    <h2 class="section-title">{{ 'POPULAR_MOVIES' | translate }}</h2>
+    <div class="tv-grid">
+      @for (movie of movies(); track movie.id) {
+        <a [routerLink]="['/movie', movie.id]" class="tv-card">
+          <img
+            [src]="'https://image.tmdb.org/t/p/w500' + movie.poster_path"
+            [alt]="movie.title"
+          />
+          <app-wishlist-icon [item]="movie"></app-wishlist-icon>
+          <div class="card-overlay">
+            <h3>{{ movie.title }}</h3>
+            <p>{{ movie.release_date?.slice(0, 4) }}</p>
+          </div>
+        </a>
+      }
+    </div>
+  </div>
+  
